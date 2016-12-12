@@ -1,16 +1,17 @@
 import random
 import string
+new_sentence = []
+new_sentence_string = []
+while_count = 0
+lengths = []
+counter1 = 0
+counter2 = 0
 while True:
 	operation = input("Do you want to encrypt a message or decrypt one? Type exit to exit.")
 	operation = operation.lower()
 	if operation == "encrypt":
 		sentence = input("Put in the word")
 		sentence = sentence.lower()
-		new_sentence = []
-		new_sentence_string = []
-		while_count = 0
-		lengths = []
-		counter1 = 0
 		for letter in sentence:
 			if letter == "a":
 				new_sentence.append(1)
@@ -85,7 +86,10 @@ while True:
 		new_sentence_string = "".join(new_sentence_string)
 		print (new_sentence_string)
 	elif operation == "decrypt":
-		pass
+		sequence = input("What is the code")
+		lengths = [] # Redefining lengths in case it already contains something
+		length_of_sequence = sequence[len(sequence) - 1]
+		print (length_of_sequence)
 	elif operation == "exit":
 		break
 	else:
