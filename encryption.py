@@ -1,7 +1,8 @@
 import random
 sentence = input("Put in the word")
-sentnece = sentence.lower()
+sentence = sentence.lower()
 new_sentence = []
+new_sentence_string = []
 for letter in sentence:
 	if letter == "a":
 		new_sentence.append(1)
@@ -56,7 +57,10 @@ for letter in sentence:
 	elif letter == "z":
 		new_sentence.append(22)
 	elif letter == " ":
-		new_sentence.append(0
-num_of_letters = random.randint((len(sentence)/2), (len(sentence)*2))
-print (new_sentence)
-		
+		new_sentence.append(0)
+for number in new_sentence:
+	new_sentence_string.append(str(number))
+new_sentence_string = "".join(new_sentence_string)
+print (new_sentence_string)
+
+	
