@@ -5,6 +5,8 @@ sentence = sentence.lower()
 new_sentence = []
 new_sentence_string = []
 while_count = 0
+lengths = []
+counter1 = 0
 for letter in sentence:
 	if letter == "a":
 		new_sentence.append(1)
@@ -60,13 +62,21 @@ for letter in sentence:
 		new_sentence.append(22)
 	elif letter == " ":
 		new_sentence.append(0)
+length_of_sequence = len(new_sentence)
+for number in new_sentence:
+	if number >= 10:
+		lengths.append(2)
+	else:
+		lengths.append(1)
 num_of_letters = random.randint(int(len(sentence)/2), len(sentence)*2)
 while while_count != num_of_letters:
 	new_sentence.insert(random.randint(0, len(new_sentence)), random.choice(string.ascii_letters).upper())
 	while_count += 1
+for length in lengths:
+	new_sentence.insert(counter1, length)
+	counter1 += 2
+new_sentence.append(length_of_sequence)
 for number in new_sentence:
 	new_sentence_string.append(str(number))
 new_sentence_string = "".join(new_sentence_string)
 print (new_sentence_string)
-
-	
