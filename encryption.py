@@ -67,28 +67,23 @@ while True:
 			elif letter == " ":
 				new_sentence.append(0)
 		length_of_sequence = len(new_sentence)
-		print ("The raw sequence" + str(new_sentence))
 		for number in new_sentence:
 			if number >= 10:
 				lengths.append(2)
 			else:
 				lengths.append(1)
-		print ("The lengths are " + str(lengths))
 		num_of_letters = random.randint(int(len(user_sentence)/2), len(user_sentence)*2)
 		while while_count != num_of_letters:
 			new_sentence.insert(random.randint(0, len(new_sentence)), random.choice(string.ascii_letters).upper())
 			while_count += 1
-		print ("The sequence with the letters are " + str(new_sentence))
 		for length in lengths:
 			new_sentence.insert(counter1, length)
 			counter1 += 2
-		print ("The sequence with lengths are " + str(new_sentence))
 		new_sentence.append(length_of_sequence)
 		for number in new_sentence:
 			new_sentence_string.append(str(number))
 		new_sentence_string = "".join(new_sentence_string)
-		print ("The final sequence is " + str(new_sentence_string))
-		print (lengths)
+		print ("The sequence is " + str(new_sentence_string))
 	elif operation == "decrypt":
 		sequence = input("What is the code")
 		lengths = [] # Redefining lengths in case it already contains something
@@ -103,23 +98,16 @@ while True:
 			lengths.append(list_sequence[while_count])
 			while_count += 2 # while_count is used to count which indexes to append
 			counter2 += 1 # counter2 is used to count the numbers of lengths
-		print ("The sequence is  " + str(list_sequence))
-		print ("Lengths are " + str(lengths))
 		counter2 = 0
 		while_count = 0
-		print (list_sequence[4])
-		print (list_sequence[6])
 		while counter2 != int(length_of_sequence): # This while loop is an almost exact copy of the above, except instead of appending lengths to a list, it's deleting the lengths from the sequence
-			print ("This is turn number " + str(counter2) + ". It will delete what is at index " + str(while_count) + ", which is " + list_sequence[while_count])
 			del list_sequence[while_count]
 			while_count += 1 # while_count is used to count which indexes to append
 			counter2 += 1 # counter2 is used to count the numbers of lengths
-		print ("Without lengths is " + str(list_sequence))
 		sentence_only_numbers = []
 		for item in list_sequence:
 			if item not in string.ascii_letters:
 				sentence_only_numbers.append(item)
-		print ("The sequence with only numbers is " + str(sentence_only_numbers))
 		counter3 = 0
 		new_sentence = []
 		for length in lengths:
@@ -190,6 +178,7 @@ while True:
 				sentence.append("z")
 			elif number == "0":
 				sentence.append(" ")
+		sentence = "".join(sentence)
 		print (sentence)
 	elif operation == "exit":
 		break
