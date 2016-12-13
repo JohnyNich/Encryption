@@ -1,15 +1,16 @@
 import random
 import string
+debugging = False
 while True:
 	new_sentence = []
 	new_sentence_string = []
 	while_count = 0
 	lengths = []
 	counter1 = 0
-	operation = input("Do you want to encrypt a message or decrypt one? Type exit to exit.")
+	operation = input("Do you want to encrypt a message or decrypt one? Type exit to exit. \n")
 	operation = operation.lower()
 	if operation == "encrypt":
-		user_sentence = input("Put in the word")
+		user_sentence = input("Put in the word \n")
 		user_sentence = user_sentence.lower()
 		for letter in user_sentence:
 			if letter == "a":
@@ -96,8 +97,10 @@ while True:
 		print ("The sequence is " + str(new_sentence_string))
 		test = new_sentence_string
 	elif operation == "decrypt":
-		#~ sequence = input("What is the code")
-		sequence = test
+		if debugging != True:
+			sequence = input("What is the code \n")
+		else:
+			sequence = test
 		lengths = [] # Redefining lengths in case it already contains something
 		length_of_sequence = []
 		for thing in sequence[::-1]:
@@ -201,5 +204,8 @@ while True:
 		print (sentence)
 	elif operation == "exit":
 		break
+	elif operation == "debugging mode":
+		print ("Debugging mode enabled")
+		debugging = True
 	else:
 		print ("That's not a valid operation")
