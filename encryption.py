@@ -91,17 +91,30 @@ while True:
 		print (length_of_sequence)
 		while_count = 0 # Redefining while_count in case it already contains something
 		counter2 = 0
+		list_sequence = []
+		for thing in sequence:
+			list_sequence.append(thing)
 		while counter2 != int(length_of_sequence):
-			lengths.append(sequence[while_count])
+			lengths.append(list_sequence[while_count])
+			del list_sequence[while_count]
 			while_count += 2 # while_count is used to count which indexes to append
 			counter2 += 1 # counter2 is used to count the numbers of lengths
 		print (lengths)
-		sequence = sequence.lower()
-		new_sequence = []
-		for item in sequence:
+		sentence_only_numbers = []
+		for item in list_sequence:
 			if item not in string.ascii_letters:
-				new_sequence.append(item)
-		print (new_sequence)
+				sentence_only_numbers.append(item)
+		print (sentence_only_numbers)
+		counter3 = 0
+		new_sentence = []
+		for length in lengths:
+			if length == "1":
+				new_sentence.append(sentence_only_numbers[counter3])
+				counter3 += 1
+			else:
+				new_sentence.append(sentence_only_numbers[counter3:counter3 +2])
+				counter3 += 2
+		print (new_sentence)
 	elif operation == "exit":
 		break
 	else:
