@@ -67,27 +67,46 @@ while True:
 			elif letter == " ":
 				new_sentence.append(0)
 		length_of_sequence = len(new_sentence)
+		print ("The raw sequence" + str(new_sentence))
+		single_numbered_list = []
 		for number in new_sentence:
 			if number >= 10:
 				lengths.append(2)
+				single_numbered_list.append(str(number)[0])
+				single_numbered_list.append(str(number)[1])
 			else:
 				lengths.append(1)
+				single_numbered_list.append(str(number))
+		new_sentence = single_numbered_list
 		num_of_letters = random.randint(int(len(user_sentence)/2), len(user_sentence)*2)
+		print ("The lengths are " + str(lengths))
 		while while_count != num_of_letters:
 			new_sentence.insert(random.randint(0, len(new_sentence)), random.choice(string.ascii_letters).upper())
 			while_count += 1
+		print ("The sequence with the letters are " + str(new_sentence))
 		for length in lengths:
 			new_sentence.insert(counter1, length)
 			counter1 += 2
+		print ("The sequence with lengths are " + str(new_sentence))
+		new_sentence.append(random.choice(string.ascii_letters.upper()))
 		new_sentence.append(length_of_sequence)
 		for number in new_sentence:
 			new_sentence_string.append(str(number))
 		new_sentence_string = "".join(new_sentence_string)
 		print ("The sequence is " + str(new_sentence_string))
+		test = new_sentence_string
 	elif operation == "decrypt":
-		sequence = input("What is the code")
+		#~ sequence = input("What is the code")
+		sequence = test
 		lengths = [] # Redefining lengths in case it already contains something
-		length_of_sequence = sequence[len(sequence) - 1]
+		length_of_sequence = []
+		for thing in sequence[::-1]:
+			if thing in string.ascii_letters.upper():
+				break
+			else:
+				length_of_sequence.append(thing)
+		length_of_sequence = length_of_sequence[::-1]
+		length_of_sequence = "".join(length_of_sequence)
 		print (length_of_sequence)
 		while_count = 0 # Redefining while_count in case it already contains something
 		counter2 = 0
