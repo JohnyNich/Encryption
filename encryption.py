@@ -1,11 +1,11 @@
 import random
 import string
-new_sentence = []
-new_sentence_string = []
-while_count = 0
-lengths = []
-counter1 = 0
 while True:
+	new_sentence = []
+	new_sentence_string = []
+	while_count = 0
+	lengths = []
+	counter1 = 0
 	operation = input("Do you want to encrypt a message or decrypt one? Type exit to exit.")
 	operation = operation.lower()
 	if operation == "encrypt":
