@@ -2,6 +2,7 @@ import random
 import string
 import sys
 import time
+import linecache
 def word_by_word(sentence):
 	for letter in sentence:
 		print(letter, end="")
@@ -9,15 +10,33 @@ def word_by_word(sentence):
 		time.sleep(0.1)
 	print ("")
 debugging = False
+write = False
+start = True
+has_read_sequence = False
+session_read = open("session.txt", "r")
+session = session_read.read()
+session = int(session)
+session_read.close()
+session += 1
+session_read = open("session.txt", "w")
+session_read.write(str(session))
+session_read.close()
 while True:
 	new_sentence = []
 	new_sentence_string = []
 	while_count = 0
 	lengths = []
 	counter1 = 0
-	word_by_word("Do you want to encrypt a message or decrypt one? Type exit to exit.")
-	operation = input()
-	operation = operation.lower()
+	if start == True:
+		word_by_word("Do you want to encrypt a message or decrypt one? Type exit to exit. If you want to write the sequence onto a file. Type write. If you want to read a file, just type read.)
+		#~ word_by_word("Do you want to encrypt a message or decrypt one? Type exit to exit. If you want to write the sequence onto a file. Type write. If you want to read a file, just type read. Acsess setting by type settings.")
+		start = False
+	if has_read_sequence == False:
+		word_by_word("What do you want to do?")
+		operation = input()
+		operation = operation.lower()
+	else:
+			operation = "decrypt"
 	if operation == "encrypt":
 		word_by_word("Put in the word")
 		user_sentence = input()
@@ -106,10 +125,20 @@ while True:
 		new_sentence_string = "".join(new_sentence_string)
 		word_by_word("The sequence is " + str(new_sentence_string))
 		test = new_sentence_string
+		write_to = "write" + str(session) + ".txt"
+		if write == True:
+			file_write = open(write_to, "a")
+			#~ file_write.write(user_sentence + ": " + new_sentence_string + "\n")
+			file_write.write(new_sentence_string + "\n")
+			word_by_word("Writing complete")
+			word_by_word("The sequence has been written to " + write_to)
+			file_write.close()
 	elif operation == "decrypt":
-		if debugging != True:
+		if debugging != True and  has_read_sequence == False:
 			word_by_word("What is the code")
 			sequence = input()
+		elif has_read_sequence == True:
+			has_read_sequence = False
 		else:
 			sequence = test
 		lengths = [] # Redefining lengths in case it already contains something
@@ -218,5 +247,24 @@ while True:
 	elif operation == "debugging mode":
 		word_by_word("Debugging mode enabled")
 		debugging = True
+	elif operation == "write":
+		if write == False:	
+			write = True
+			word_by_word("Writing enabled")
+		else:
+			write = False
+			word_by_word("Writing disabled")
+	elif operation == "read":
+		word_by_word("To read a file, make sure it is inside the folder in which this file is located. Then, just enter the line in which the sequence is.")
+		word_by_word("Enter the name of the file. Make sure to add the ending (eg .txt)")
+		read_file = input("")
+		word_by_word("What line is it?")
+		read_line = input("")
+		read_sequence = linecache.getline(read_file, int(read_line))
+		sequence = read_sequence
+		has_read_sequence = True
+	#~ elif operation == "settings":
+		#~ word_by_word("Please read README to see what things you can change. Type exit to exit.")
+		#~ setting = input("")
 	else:
 		word_by_word("That's not a valid operation")
