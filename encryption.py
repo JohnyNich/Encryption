@@ -28,7 +28,7 @@ while True:
 	lengths = []
 	counter1 = 0
 	if start == True:
-		word_by_word("Do you want to encrypt a message or decrypt one? Type exit to exit. If you want to write the sequence onto a file. Type write. If you want to read a file, just type read.)
+		word_by_word("Do you want to encrypt a message or decrypt one? Type exit to exit. If you want to write the sequence onto a file. Type write. If you want to read a file, just type read.")
 		start = False
 	if has_read_sequence == False:
 		word_by_word("What do you want to do?")
