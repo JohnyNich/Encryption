@@ -1,5 +1,13 @@
 import random
 import string
+import sys
+import time
+def word_by_word(sentence):
+	for letter in sentence:
+		print(letter, end="")
+		sys.stdout.flush()
+		time.sleep(0.1)
+	print ("")
 debugging = False
 while True:
 	new_sentence = []
@@ -7,10 +15,12 @@ while True:
 	while_count = 0
 	lengths = []
 	counter1 = 0
-	operation = input("Do you want to encrypt a message or decrypt one? Type exit to exit. \n")
+	word_by_word("Do you want to encrypt a message or decrypt one? Type exit to exit.")
+	operation = input()
 	operation = operation.lower()
 	if operation == "encrypt":
-		user_sentence = input("Put in the word \n")
+		word_by_word("Put in the word")
+		user_sentence = input()
 		user_sentence = user_sentence.lower()
 		for letter in user_sentence:
 			if letter == "a":
@@ -68,7 +78,7 @@ while True:
 			elif letter == " ":
 				new_sentence.append(0)
 		length_of_sequence = len(new_sentence)
-		print ("The raw sequence" + str(new_sentence))
+		#~ print ("The raw sequence" + str(new_sentence))
 		single_numbered_list = []
 		for number in new_sentence:
 			if number >= 10:
@@ -80,25 +90,26 @@ while True:
 				single_numbered_list.append(str(number))
 		new_sentence = single_numbered_list
 		num_of_letters = random.randint(int(len(user_sentence)/2), len(user_sentence)*2)
-		print ("The lengths are " + str(lengths))
+		#~ print ("The lengths are " + str(lengths))
 		while while_count != num_of_letters:
 			new_sentence.insert(random.randint(0, len(new_sentence)), random.choice(string.ascii_letters).upper())
 			while_count += 1
-		print ("The sequence with the letters are " + str(new_sentence))
+		#~ print ("The sequence with the letters are " + str(new_sentence))
 		for length in lengths:
 			new_sentence.insert(counter1, length)
 			counter1 += 2
-		print ("The sequence with lengths are " + str(new_sentence))
+		#~ print ("The sequence with lengths are " + str(new_sentence))
 		new_sentence.append(random.choice(string.ascii_letters.upper()))
 		new_sentence.append(length_of_sequence)
 		for number in new_sentence:
 			new_sentence_string.append(str(number))
 		new_sentence_string = "".join(new_sentence_string)
-		print ("The sequence is " + str(new_sentence_string))
+		word_by_word("The sequence is " + str(new_sentence_string))
 		test = new_sentence_string
 	elif operation == "decrypt":
 		if debugging != True:
-			sequence = input("What is the code \n")
+			word_by_word("What is the code")
+			sequence = input()
 		else:
 			sequence = test
 		lengths = [] # Redefining lengths in case it already contains something
@@ -110,7 +121,7 @@ while True:
 				length_of_sequence.append(thing)
 		length_of_sequence = length_of_sequence[::-1]
 		length_of_sequence = "".join(length_of_sequence)
-		print (length_of_sequence)
+		#~ print (length_of_sequence)
 		while_count = 0 # Redefining while_count in case it already contains something
 		counter2 = 0
 		list_sequence = []
@@ -142,7 +153,7 @@ while True:
 				number = "".join(number)
 				new_sentence.append(number)
 				counter3 += 2
-		print (new_sentence)
+		#~ print(new_sentence)
 		listed_new_sentence = []
 		sentence = []
 		for number in new_sentence:
@@ -201,11 +212,11 @@ while True:
 			elif number == "0":
 				sentence.append(" ")
 		sentence = "".join(sentence)
-		print (sentence)
+		word_by_word("The sentence is " +  sentence)
 	elif operation == "exit":
 		break
 	elif operation == "debugging mode":
-		print ("Debugging mode enabled")
+		word_by_word("Debugging mode enabled")
 		debugging = True
 	else:
-		print ("That's not a valid operation")
+		word_by_word("That's not a valid operation")
