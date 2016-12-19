@@ -1,0 +1,4 @@
+#Animated
+True
+#Additional Write Text
+False
