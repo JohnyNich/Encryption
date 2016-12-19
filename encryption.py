@@ -9,13 +9,27 @@ def word_by_word(sentence):
 		time.sleep(0.1)
 	print ("")
 debugging = False
+write = False
+start = True
+session_read = open("session.txt", "r")
+session = session_read.read()
+session = int(session)
+session_read.close()
+session += 1
+session_read = open("session.txt", "w")
+session_read.write(str(session))
+session_read.close()
 while True:
 	new_sentence = []
 	new_sentence_string = []
 	while_count = 0
 	lengths = []
 	counter1 = 0
-	word_by_word("Do you want to encrypt a message or decrypt one? Type exit to exit.")
+	if start == True:
+		word_by_word("Do you want to encrypt a message or decrypt one? Type exit to exit. If you want to write the sequence onto a file. Type write")
+		start = False
+	else:
+		word_by_word("What do you want to do?")
 	operation = input()
 	operation = operation.lower()
 	if operation == "encrypt":
@@ -106,6 +120,13 @@ while True:
 		new_sentence_string = "".join(new_sentence_string)
 		word_by_word("The sequence is " + str(new_sentence_string))
 		test = new_sentence_string
+		write_to = "write" + str(session) + ".txt"
+		if write == True:
+			file_write = open(write_to, "a")
+			file_write.write(user_sentence + ": " + new_sentence_string + "\n")
+			word_by_word("Writing complete")
+			word_by_word("The sequence has been written to " + write_to)
+			file_write.close()
 	elif operation == "decrypt":
 		if debugging != True:
 			word_by_word("What is the code")
@@ -218,5 +239,12 @@ while True:
 	elif operation == "debugging mode":
 		word_by_word("Debugging mode enabled")
 		debugging = True
+	elif operation == "write":
+		if write == False:	
+			write = True
+			word_by_word("Writing enabled")
+		else:
+			write = False
+			word_by_word("Writing disabled")
 	else:
 		word_by_word("That's not a valid operation")
