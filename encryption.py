@@ -154,7 +154,7 @@ while True:
 		if animation == True:
 			word_by_word("The sequence is " + str(new_sentence_string))
 		else:
-			word_by_word("The sequence is " + str(new_sentence_string))
+			print("The sequence is " + str(new_sentence_string))
 		test = new_sentence_string
 		write_to = "write" + str(session) + ".txt"
 		if write == True:
