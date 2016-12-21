@@ -13,17 +13,26 @@ def config_error(line):
 	word_by_word("Error, can't find True or False at line " + str(line) + " of config.txt.")
 	word_by_word("Shutting down")
 	sys.exit()
+def get_config_line(line):
+	return linecache.getline("config.txt", line).strip()
 debugging = False
 write = False
 start = True
 has_read_sequence = False
-animation = linecache.getline("config.txt", 2).strip()
+animation = get_config_line(2)
 if animation == "True":
 	animation = True
 elif animation == "False":
 	animation = False
 else:
 	config_error(2)
+additional_write_text = get_config_line(4)
+if additional_write_text == "True":
+	additional_write_text = True
+elif additional_write_text == "False":
+	additional_write_text = False
+else:
+	config_error(4)
 session_read = open("session.txt", "r")
 session = session_read.read()
 session = int(session)
@@ -150,8 +159,10 @@ while True:
 		write_to = "write" + str(session) + ".txt"
 		if write == True:
 			file_write = open(write_to, "a")
-			#~ file_write.write(user_sentence + ": " + new_sentence_string + "\n")
-			file_write.write(new_sentence_string + "\n")
+			if additional_write_text == True:
+				file_write.write(user_sentence + ": " + new_sentence_string + "\n")
+			else:
+				file_write.write(new_sentence_string + "\n")
 			if animation == True:
 				word_by_word("Writing complete")
 				word_by_word("The sequence has been written to " + write_to)
