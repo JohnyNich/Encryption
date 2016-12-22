@@ -20,23 +20,26 @@ write = False
 start = True
 has_read_sequence = False
 animation = get_config_line(2)
-if animation == "True":
+animation = animation.lower()
+if animation == "true":
 	animation = True
-elif animation == "False":
+elif animation == "false":
 	animation = False
 else:
 	config_error(2)
 additional_write_text = get_config_line(4)
-if additional_write_text == "True":
+additional_write_text = additional_write_text.lower()
+if additional_write_text == "true":
 	additional_write_text = True
-elif additional_write_text == "False":
+elif additional_write_text == "false":
 	additional_write_text = False
 else:
 	config_error(4)
-write = get_config_line(6) # For auto-write config option
-if write == "True":
+write = get_config_line(6)
+write = write.lower()
+if write == "true": # For auto-write config option
 	write = True
-elif write == "False":
+elif write == "false":
 	write = False
 else:
 	config_error()
