@@ -9,10 +9,40 @@ def word_by_word(sentence):
 		sys.stdout.flush()
 		time.sleep(0.1)
 	print ("")
+def config_error(line):
+	word_by_word("Error, can't find True or False at line " + str(line) + " of config.txt.")
+	word_by_word("Shutting down")
+	sys.exit()
+def get_config_line(line):
+	return linecache.getline("config.txt", line).strip()
 debugging = False
 write = False
 start = True
 has_read_sequence = False
+animation = get_config_line(2)
+animation = animation.lower()
+if animation == "true":
+	animation = True
+elif animation == "false":
+	animation = False
+else:
+	config_error(2)
+additional_write_text = get_config_line(4)
+additional_write_text = additional_write_text.lower()
+if additional_write_text == "true":
+	additional_write_text = True
+elif additional_write_text == "false":
+	additional_write_text = False
+else:
+	config_error(4)
+write = get_config_line(6)
+write = write.lower()
+if write == "true": # For auto-write config option
+	write = True
+elif write == "false":
+	write = False
+else:
+	config_error()
 session_read = open("session.txt", "r")
 session = session_read.read()
 session = int(session)
@@ -28,18 +58,26 @@ while True:
 	lengths = []
 	counter1 = 0
 	if start == True:
-		word_by_word("Do you want to encrypt a message or decrypt one? Type exit to exit. If you want to write the sequence onto a file. Type write. If you want to read a file, just type read.)
-		#~ word_by_word("Do you want to encrypt a message or decrypt one? Type exit to exit. If you want to write the sequence onto a file. Type write. If you want to read a file, just type read. Acsess setting by type settings.")
+		if animation == True:
+			word_by_word("Do you want to encrypt a message or decrypt one? Type exit to exit. If you want to write the sequence onto a file. Type write. If you want to read a file, just type read.")
+		else:
+			print("Do you want to encrypt a message or decrypt one? Type exit to exit. If you want to write the sequence onto a file. Type write. If you want to read a file, just type read.")
 		start = False
 	if has_read_sequence == False:
-		word_by_word("What do you want to do?")
-		operation = input()
+		if animation == True:
+			word_by_word("What do you want to do?")
+			operation = input()
+		else:
+			operation = input("What do you want to do?")
 		operation = operation.lower()
 	else:
 			operation = "decrypt"
 	if operation == "encrypt":
-		word_by_word("Put in the word")
-		user_sentence = input()
+		if animation == True:
+			word_by_word("Put in the word")
+			user_sentence = input()
+		else:
+			user_sentence = input("Put in a word")
 		user_sentence = user_sentence.lower()
 		for letter in user_sentence:
 			if letter == "a":
@@ -123,20 +161,32 @@ while True:
 		for number in new_sentence:
 			new_sentence_string.append(str(number))
 		new_sentence_string = "".join(new_sentence_string)
-		word_by_word("The sequence is " + str(new_sentence_string))
+		if animation == True:
+			word_by_word("The sequence is " + str(new_sentence_string))
+		else:
+			print("The sequence is " + str(new_sentence_string))
 		test = new_sentence_string
 		write_to = "write" + str(session) + ".txt"
 		if write == True:
 			file_write = open(write_to, "a")
-			#~ file_write.write(user_sentence + ": " + new_sentence_string + "\n")
-			file_write.write(new_sentence_string + "\n")
-			word_by_word("Writing complete")
-			word_by_word("The sequence has been written to " + write_to)
+			if additional_write_text == True:
+				file_write.write(user_sentence + ": " + new_sentence_string + "\n")
+			else:
+				file_write.write(new_sentence_string + "\n")
+			if animation == True:
+				word_by_word("Writing complete")
+				word_by_word("The sequence has been written to " + write_to)
+			else:
+				print("Writing complete")
+				print("The sequence has been written to " + write_to)
 			file_write.close()
 	elif operation == "decrypt":
 		if debugging != True and  has_read_sequence == False:
-			word_by_word("What is the code")
-			sequence = input()
+			if animation == True:
+				word_by_word("What is the code")
+				sequence = input()
+			else:
+				sequence = input("What is the code")
 		elif has_read_sequence == True:
 			has_read_sequence = False
 		else:
@@ -241,30 +291,47 @@ while True:
 			elif number == "0":
 				sentence.append(" ")
 		sentence = "".join(sentence)
-		word_by_word("The sentence is " +  sentence)
+		if animation == True:
+			word_by_word("The sentence is " +  sentence)
+		else:
+			print("The sentence is " +  sentence)
 	elif operation == "exit":
 		break
 	elif operation == "debugging mode":
-		word_by_word("Debugging mode enabled")
+		if animation == True:
+			word_by_word("Debugging mode enabled")
+		else:
+			print("Debugging mode enabled")
 		debugging = True
 	elif operation == "write":
 		if write == False:	
 			write = True
-			word_by_word("Writing enabled")
+			if animation == True:
+				word_by_word("Writing enabled")
+			else:
+				print("Writing enabled")
 		else:
 			write = False
-			word_by_word("Writing disabled")
+			if animation == True:
+				word_by_word("Writing disabled")
+			else:
+				print("Writing disabled")
 	elif operation == "read":
-		word_by_word("To read a file, make sure it is inside the folder in which this file is located. Then, just enter the line in which the sequence is.")
-		word_by_word("Enter the name of the file. Make sure to add the ending (eg .txt)")
-		read_file = input("")
-		word_by_word("What line is it?")
-		read_line = input("")
+		if animation == True:
+			word_by_word("To read a file, make sure it is inside the folder in which this file is located. Then, just enter the line in which the sequence is.")
+			word_by_word("Enter the name of the file. Make sure to add the ending (eg .txt)")
+			read_file = input("")
+			word_by_word("What line is it?")
+			read_line = input("")
+		else:
+			print("To read a file, make sure it is inside the folder in which this file is located. Then, just enter the line in which the sequence is.")
+			read_file = input("Enter the name of the file. Make sure to add the ending (eg .txt) \n")
+			read_line = input("What line is it? \n")
 		read_sequence = linecache.getline(read_file, int(read_line))
 		sequence = read_sequence
 		has_read_sequence = True
-	#~ elif operation == "settings":
-		#~ word_by_word("Please read README to see what things you can change. Type exit to exit.")
-		#~ setting = input("")
 	else:
-		word_by_word("That's not a valid operation")
+		if animation == True:
+			word_by_word("That's not a valid operation")
+		else:
+			print("That's not a valid operation")
