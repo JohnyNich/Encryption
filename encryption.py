@@ -33,6 +33,13 @@ elif additional_write_text == "False":
 	additional_write_text = False
 else:
 	config_error(4)
+write = get_config_line(6) # For auto-write config option
+if write == "True":
+	write = True
+elif write == "False":
+	write = False
+else:
+	config_error()
 session_read = open("session.txt", "r")
 session = session_read.read()
 session = int(session)
