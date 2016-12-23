@@ -19,6 +19,7 @@ debugging = False
 write = False
 start = True
 has_read_sequence = False
+characters = ["", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 animation = get_config_line(2)
 animation = animation.lower()
 if animation == "true":
