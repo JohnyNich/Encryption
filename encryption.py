@@ -132,6 +132,90 @@ while True:
 				new_sentence.append(25)
 			elif letter == "z":
 				new_sentence.append(26)
+			elif letter == ",":
+				new_sentence.append(27)
+			elif letter == "<":
+				new_sentence.append(28)
+			elif letter == ".":
+				new_sentence.append(29)
+			elif letter == ">":
+				new_sentence.append(30)
+			elif letter == "/":
+				new_sentence.append(31)
+			elif letter == "?":
+				new_sentence.append(32)
+			elif letter == "'":
+				new_sentence.append(33)
+			elif letter == "\"":
+				new_sentence.append(34)
+			elif letter == ";":
+				new_sentence.append(35)
+			elif letter == ":":
+				new_sentence.append(36)
+			elif letter == "\\":
+				new_sentence.append(37)
+			elif letter == "|":
+				new_sentence.append(38)
+			elif letter == "]":
+				new_sentence.append(39)
+			elif letter == "}":
+				new_sentence.append(40)
+			elif letter == "[":
+				new_sentence.append(41)
+			elif letter == "{":
+				new_sentence.append(42)
+			elif letter == "=":
+				new_sentence.append(43)
+			elif letter == "+":
+				new_sentence.append(44)
+			elif letter == "-":
+				new_sentence.append(45)
+			elif letter == "_":
+				new_sentence.append(46)
+			elif letter == "1":
+				new_sentence.append(47)
+			elif letter == "!":
+				new_sentence.append(48)
+			elif letter == "2":
+				new_sentence.append(49)
+			elif letter == "@":
+				new_sentence.append(50)
+			elif letter == "3":
+				new_sentence.append(51)
+			elif letter == "#":
+				new_sentence.append(52)
+			elif letter == "4":
+				new_sentence.append(53)
+			elif letter == "$":
+				new_sentence.append(54)
+			elif letter == "5":
+				new_sentence.append(55)
+			elif letter == "%":
+				new_sentence.append(56)
+			elif letter == "6":
+				new_sentence.append(57)
+			elif letter == "^":
+				new_sentence.append(58)
+			elif letter == "7":
+				new_sentence.append(59)
+			elif letter == "&":
+				new_sentence.append(60)
+			elif letter == "8":
+				new_sentence.append(61)
+			elif letter == "*":
+				new_sentence.append(62)
+			elif letter == "9":
+				new_sentence.append(63)
+			elif letter == "(":
+				new_sentence.append(64)
+			elif letter == "0":
+				new_sentence.append(65)
+			elif letter == ")":
+				new_sentence.append(66)
+			elif letter == "`":
+				new_sentence.append(67)
+			elif letter == "~":
+				new_sentence.append(68)
 			elif letter == " ":
 				new_sentence.append(0)
 		length_of_sequence = len(new_sentence)
