@@ -7,6 +7,5 @@ The following options are changeable in the config file:
   Animation: Changing the moving text animation
   Additional Write Text: Word: Sequence vs Sequence (eg. hi: 1819WU2 vs 1819WU2)
   Auto Write: When program start's up, write mode is automatically enabled.
+  Auto Debug: When program start's up, debugging mode is automatically enabled.
 Note: Please remember when changing config optionts that the input can either be True or False.
-
-Disclaimer: This program does NOT work with encrypting or decrypting any messages with anything that's not a letter (no numbers or symobls).
