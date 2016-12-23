@@ -7,3 +7,4 @@ False
 #Auto Debug
 False
 #Date-time stamp
+True
