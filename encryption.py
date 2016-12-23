@@ -19,7 +19,7 @@ debugging = False
 write = False
 start = True
 has_read_sequence = False
-characters = ["", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", ",", "<", ".", ">", "/", "?", ";", ":","'", "\"", "\\", "|", "]", "}", "[", "{", "1", "!", "2", "@", "3", "#", "4", "$", "5", "%", "6", "^", "7", "&", "8", "*", "9", "(", "0", ")", "-", "_", "+", "+", "`", "~"]
+characters = [" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", ",", "<", ".", ">", "/", "?", ";", ":","'", "\"", "\\", "|", "]", "}", "[", "{", "1", "!", "2", "@", "3", "#", "4", "$", "5", "%", "6", "^", "7", "&", "8", "*", "9", "(", "0", ")", "-", "_", "+", "+", "`", "~"]
 animation = get_config_line(2)
 animation = animation.lower()
 if animation == "true":
@@ -184,60 +184,7 @@ while True:
 		listed_new_sentence = []
 		sentence = []
 		for number in new_sentence:
-			if number == "1":
-				sentence.append("a")
-			elif number == "2":
-				sentence.append("b")
-			elif number == "3":
-				sentence.append("c")
-			elif number == "4":
-				sentence.append("d")
-			elif number == "5":
-				sentence.append("e")
-			elif number == "6":
-				sentence.append("f")
-			elif number == "7":
-				sentence.append("g")
-			elif number == "8":
-				sentence.append("h")
-			elif number == "9":
-				sentence.append("i")
-			elif number == "10":
-				sentence.append("j")
-			elif number == "11":
-				sentence.append("k")
-			elif number == "12":
-				sentence.append("l")
-			elif number == "13":
-				setnence.append("m")
-			elif number == "14":
-				sentence.append("n")
-			elif number == "15":
-				sentence.append("o")
-			elif number == "16":
-				sentence.append("p")
-			elif number == "17":
-				sentence.append("q")
-			elif number == "18":
-				sentence.append("r")
-			elif number == "19":
-				sentence.append("s")
-			elif number == "20":
-				sentence.append("t")
-			elif number == "21":
-				sentence.append("u")
-			elif number == "22":
-				sentence.append("v")
-			elif number == "23":
-				sentence.append("w")
-			elif number == "24":
-				sentnece.append("x")
-			elif number == "25":
-				sentence.append("y")
-			elif number == "26":
-				sentence.append("z")
-			elif number == "0":
-				sentence.append(" ")
+			sentence.append(characters[int(number)])
 		sentence = "".join(sentence)
 		if animation == True:
 			word_by_word("The sentence is " +  sentence)
