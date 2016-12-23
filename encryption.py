@@ -3,6 +3,7 @@ import string
 import sys
 import time
 import linecache
+import datetime
 def word_by_word(sentence):
 	for letter in sentence:
 		print(letter, end="")
@@ -51,6 +52,14 @@ elif debugging == "false":
 	debugging = False
 else:
 	config_error(8)
+datetime_stamp = get_config_line(10)
+datetime_stamp = date-time_stamp.lower()
+if datetime_stamp == "true":
+	datetime_stamp = True
+elif datetime_stamp == "false":
+	datetime_stamp = False
+else:
+	config_error(10)
 session_read = open("session.txt", "r")
 session = session_read.read()
 session = int(session)
