@@ -4,3 +4,5 @@ True
 False
 #Auto Write
 False
+#Auto Debug
+False
