@@ -19,7 +19,7 @@ debugging = False
 write = False
 start = True
 has_read_sequence = False
-characters = ["", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+characters = ["", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", ",", "<", ".", ">", "/", "?", ";", ":","'", "\"", "\\", "|", "]", "}", "[", "{", "1", "!", "2", "@", "3", "#", "4", "$", "5", "%", "6", "^", "7", "&", "8", "*", "9", "(", "0", ")", "-", "_", "+", "+", "`", "~"]
 animation = get_config_line(2)
 animation = animation.lower()
 if animation == "true":
