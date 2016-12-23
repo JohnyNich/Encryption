@@ -15,7 +15,6 @@ def config_error(line):
 	sys.exit()
 def get_config_line(line):
 	return linecache.getline("config.txt", line).strip()
-debugging = False
 write = False
 start = True
 has_read_sequence = False
@@ -43,7 +42,15 @@ if write == "true": # For auto-write config option
 elif write == "false":
 	write = False
 else:
-	config_error()
+	config_error(6)
+debugging = get_config_line(8)
+debugging = debugging.lower()
+if debugging == "true":
+	debugging = True
+elif debugging == "false":
+	debugging = False
+else:
+	config_error(8)
 session_read = open("session.txt", "r")
 session = session_read.read()
 session = int(session)
@@ -192,11 +199,18 @@ while True:
 	elif operation == "exit":
 		break
 	elif operation == "debugging mode":
-		if animation == True:
-			word_by_word("Debugging mode enabled")
+		if debugging == False:
+			if animation == True:
+				word_by_word("Debugging mode enabled")
+			else:
+				print("Debugging mode enabled")
+			debugging = True
 		else:
-			print("Debugging mode enabled")
-		debugging = True
+			if animation == True:
+				word_by_word("Debugging mode disabled")
+			else:
+				print("Debugging mode disabled")
+			debugging = True
 	elif operation == "write":
 		if write == False:	
 			write = True
