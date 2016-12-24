@@ -53,7 +53,7 @@ elif debugging == "false":
 else:
 	config_error(8)
 datetime_stamp = get_config_line(10)
-datetime_stamp = date-time_stamp.lower()
+datetime_stamp = datetime_stamp.lower()
 if datetime_stamp == "true":
 	datetime_stamp = True
 elif datetime_stamp == "false":
@@ -95,10 +95,20 @@ while True:
 			user_sentence = input()
 		else:
 			user_sentence = input("Put in a word")
-		for letter in user_sentence:
-			new_sentence.append(characters.index(letter))
+		if datetime_stamp == True:
+			today = datetime.date.today()
+			date = []
+			date.append(str(today.day))
+			date.append(str(today.month))
+			date.append(str(today.year) + "-") # I've added this dash so that the program will now when to stop appending dates
+			date = "-".join(date)
+			print (date)
+			for number in date:
+				new_sentence.append(characters.index(number))
+			for letter in user_sentence:
+				new_sentence.append(characters.index(letter))
 		length_of_sequence = len(new_sentence)
-		#~ print ("The raw sequence" + str(new_sentence))
+		print ("The raw sequence" + str(new_sentence))
 		single_numbered_list = []
 		for number in new_sentence:
 			if number >= 10:
@@ -121,6 +131,8 @@ while True:
 		#~ print ("The sequence with lengths are " + str(new_sentence))
 		new_sentence.append(random.choice(string.ascii_letters.upper()))
 		new_sentence.append(length_of_sequence)
+		if datetime_stamp == True:
+			new_sentence.insert(0, "T")
 		for number in new_sentence:
 			new_sentence_string.append(str(number))
 		new_sentence_string = "".join(new_sentence_string)
@@ -154,6 +166,13 @@ while True:
 			has_read_sequence = False
 		else:
 			sequence = test
+		if sequence[0] == "T":
+			has_datetime_stamp = True
+			sequence = list(sequence)
+			sequence.remove("T")
+			sequence = "".join(sequence)
+		else:
+			has_datetime_stamp = False
 		lengths = [] # Redefining lengths in case it already contains something
 		length_of_sequence = []
 		for thing in sequence[::-1]:
@@ -195,11 +214,46 @@ while True:
 				number = "".join(number)
 				new_sentence.append(number)
 				counter3 += 2
-		#~ print(new_sentence)
 		listed_new_sentence = []
 		sentence = []
 		for number in new_sentence:
 			sentence.append(characters[int(number)])
+		print (sentence)
+		if datetime_stamp == True:
+			counter4 = 0
+			day = []
+			for character in sentence:
+				if character == "-":
+					counter4 += 1
+					break
+				else:
+					day.append(character)
+				counter4 += 1
+			sentence = sentence[counter4:]
+			counter4 = 0
+			day = "".join(day)
+			month = []
+			for character in sentence:
+				if character == "-":
+					counter4 += 1
+					break
+				else:
+					month.append(character)
+				counter4 += 1
+			sentence = sentence[counter4:]
+			counter4 = 0
+			month = "".join(month)
+			year = []
+			for character in sentence:
+				if character == "-":
+					counter4 += 1
+					break
+				else:
+					year.append(character)
+				counter4 += 1
+			sentence = sentence[counter4:]
+			year = "".join(year)
+			print ("This message was encrypted on " + day + " of " + month + " of " + year)
 		sentence = "".join(sentence)
 		if animation == True:
 			word_by_word("The sentence is " +  sentence)
