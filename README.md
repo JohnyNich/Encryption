@@ -12,4 +12,6 @@ The following options are changeable in the config file:
   
   Auto Debug: When program start's up, debugging mode is automatically enabled.
   
+  Date-Time Stamp: Will automatically add a date-time stamp to the sequence, which will be shown during decryption.
+  
 Note: Please remember when changing config optionts that the input can either be True or False. 
