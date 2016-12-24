@@ -253,7 +253,12 @@ while True:
 				counter4 += 1
 			sentence = sentence[counter4:]
 			year = "".join(year)
-			print ("This message was encrypted on " + day + " of " + month + " of " + year)
+			months = {1 : "January", 2 : "Feburary", 3 : "March", 4 : "April", 5 : "May", 6 : "June", 7 : "July", 8 : "August", 9 : "September", 10 : "October", 11 : "November", 12 : "December"}
+			endings = {1 : "st", 2 : "nd", 3 : "rd", 4 : "th", 5 : "th", 6 : "th", 7 : "th", 8 : "th", 9 : "th", 0 : "th"}
+			if animation == True:
+				word_by_word ("This message was encrypted on " + day + endings[int(day[:0:-1])] + " of " + months[int(month)] + " of " + year)
+			else:
+				print ("This message was encrypted on " + day + endings[int(day[:0:-1])] + " of " + months[int(month)] + " of " + year)
 		sentence = "".join(sentence)
 		if animation == True:
 			word_by_word("The sentence is " +  sentence)
