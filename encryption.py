@@ -96,11 +96,16 @@ while True:
 		else:
 			user_sentence = input("Put in a word")
 		if datetime_stamp == True:
-			today = datetime.date.today()
+			today = datetime.datetime.today()
 			date = []
 			date.append(str(today.day))
 			date.append(str(today.month))
-			date.append(str(today.year) + "-") # I've added this dash so that the program will now when to stop appending dates
+			date.append(str(today.year))
+			date.append(str(today.hour))
+			if today.minute < 10:
+				date.append("0" + str(today.minute) + "-") # I've added this dash so that the program will now when to stop appending dates
+			else:
+				date.append(str(today.minute) + "-") # I've added this dash so that the program will now when to stop appending dates
 			date = "-".join(date)
 			print (date)
 			for number in date:
@@ -252,13 +257,35 @@ while True:
 					year.append(character)
 				counter4 += 1
 			sentence = sentence[counter4:]
+			counter4 = 0
 			year = "".join(year)
+			hour = []
+			for character in sentence:
+				if character == "-":
+					counter4 += 1
+					break
+				else:
+					hour.append(character)
+				counter4 += 1
+			sentence = sentence[counter4:]
+			counter4 = 0
+			hour = "".join(hour)
+			minute = []
+			for character in sentence:
+				if character == "-":
+					counter4 += 1
+					break
+				else:
+					minute.append(character)
+				counter4 += 1
+			minute = "".join(minute)
+			sentence = sentence[counter4:]
 			months = {1 : "January", 2 : "Feburary", 3 : "March", 4 : "April", 5 : "May", 6 : "June", 7 : "July", 8 : "August", 9 : "September", 10 : "October", 11 : "November", 12 : "December"}
 			endings = {1 : "st", 2 : "nd", 3 : "rd", 4 : "th", 5 : "th", 6 : "th", 7 : "th", 8 : "th", 9 : "th", 0 : "th"}
 			if animation == True:
-				word_by_word ("This message was encrypted on " + day + endings[int(day[:0:-1])] + " of " + months[int(month)] + " of " + year)
+				word_by_word("This message was encrypted on " + day + endings[int(day[:0:-1])] + " of " + months[int(month)] + " of " + year + " at " + hour + ":" + minute)
 			else:
-				print ("This message was encrypted on " + day + endings[int(day[:0:-1])] + " of " + months[int(month)] + " of " + year)
+				print("This message was encrypted on " + day + endings[int(day[:0:-1])] + " of " + months[int(month)] + " of " + year + " at " + hour + ":" + minute)
 		sentence = "".join(sentence)
 		if animation == True:
 			word_by_word("The sentence is " +  sentence)
