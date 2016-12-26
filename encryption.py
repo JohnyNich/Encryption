@@ -110,10 +110,9 @@ while True:
 			print (date)
 			for number in date:
 				new_sentence.append(characters.index(number))
-			for letter in user_sentence:
-				new_sentence.append(characters.index(letter))
+		for letter in user_sentence:
+			new_sentence.append(characters.index(letter))
 		length_of_sequence = len(new_sentence)
-		print ("The raw sequence" + str(new_sentence))
 		single_numbered_list = []
 		for number in new_sentence:
 			if number >= 10:
@@ -223,7 +222,6 @@ while True:
 		sentence = []
 		for number in new_sentence:
 			sentence.append(characters[int(number)])
-		print (sentence)
 		if datetime_stamp == True:
 			counter4 = 0
 			day = []
