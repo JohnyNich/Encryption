@@ -328,7 +328,7 @@ while True:
 			print("To read a file, make sure it is inside the folder in which this file is located. Then, just enter the line in which the sequence is.")
 			read_file = input("Enter the name of the file. Make sure to add the ending (eg .txt) \n")
 			read_line = input("What line is it? \n")
-		read_sequence = linecache.getline(read_file, int(read_line))
+		read_sequence = linecache.getline(read_file, int(read_line)).strip()
 		sequence = read_sequence
 		has_read_sequence = True
 	else:
