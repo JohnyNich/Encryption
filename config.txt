@@ -1,0 +1,10 @@
+#Animated
+True
+#Additional Write Text
+False
+#Auto Write
+False
+#Auto Debug
+False
+#Date-time stamp
+True
