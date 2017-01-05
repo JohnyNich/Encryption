@@ -283,7 +283,10 @@ while True:
 			if animation == True:
 				word_by_word("This message was encrypted on " + day + endings[int(day[:0:-1])] + " of " + months[int(month)] + " of " + year + " at " + hour + ":" + minute)
 			else:
-				print("This message was encrypted on " + day + endings[int(day[:0:-1])] + " of " + months[int(month)] + " of " + year + " at " + hour + ":" + minute)
+				if len(day) == 2:
+					print("This message was encrypted on " + day + endings[int(day[:0:-1])] + " of " + months[int(month)] + " of " + year + " at " + hour + ":" + minute)
+				else:
+					print("This message was encrypted on " + day + endings[int(day)] + " of " + months[int(month)] + " of " + year + " at " + hour + ":" + minute)
 		sentence = "".join(sentence)
 		if animation == True:
 			word_by_word("The sentence is " +  sentence)
@@ -328,7 +331,7 @@ while True:
 			print("To read a file, make sure it is inside the folder in which this file is located. Then, just enter the line in which the sequence is.")
 			read_file = input("Enter the name of the file. Make sure to add the ending (eg .txt) \n")
 			read_line = input("What line is it? \n")
-		read_sequence = linecache.getline(read_file, int(read_line)).strip()
+		read_sequence = linecache.getline(read_file, int(read_line))
 		sequence = read_sequence
 		has_read_sequence = True
 	else:
