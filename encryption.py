@@ -28,6 +28,11 @@ elif animation == "false":
 	animation = False
 else:
 	config_error(2)
+def cout(text): # cout (Console out) prints to console and will automatically animate the text if animation is ture. That's why I put it here.
+	if animation == True:
+		word_by_word(text)
+	else:
+		print(text)
 additional_write_text = get_config_line(4)
 additional_write_text = additional_write_text.lower()
 if additional_write_text == "true":
@@ -75,10 +80,7 @@ while True:
 	lengths = []
 	counter1 = 0
 	if start == True:
-		if animation == True:
-			word_by_word("Do you want to encrypt a message or decrypt one? Type exit to exit. If you want to write the sequence onto a file. Type write. If you want to read a file, just type read.")
-		else:
-			print("Do you want to encrypt a message or decrypt one? Type exit to exit. If you want to write the sequence onto a file. Type write. If you want to read a file, just type read.")
+		cout("Do you want to encrypt a message or decrypt one? Type exit to exit. If you want to write the sequence onto a file. Type write. If you want to read a file, just type read.")
 		start = False
 	if has_read_sequence == False:
 		if animation == True:
@@ -140,10 +142,7 @@ while True:
 		for number in new_sentence:
 			new_sentence_string.append(str(number))
 		new_sentence_string = "".join(new_sentence_string)
-		if animation == True:
-			word_by_word("The sequence is " + str(new_sentence_string))
-		else:
-			print("The sequence is " + str(new_sentence_string))
+		cout("The sequence is " + str(new_sentence_string))
 		test = new_sentence_string
 		write_to = "write" + str(session) + ".txt"
 		if write == True:
@@ -152,12 +151,8 @@ while True:
 				file_write.write(user_sentence + ": " + new_sentence_string + "\n")
 			else:
 				file_write.write(new_sentence_string + "\n")
-			if animation == True:
-				word_by_word("Writing complete")
-				word_by_word("The sequence has been written to " + write_to)
-			else:
-				print("Writing complete")
-				print("The sequence has been written to " + write_to)
+			cout("Writing complete")
+			cout("The sequence has been written to " + write_to)
 			file_write.close()
 	elif operation == "decrypt":
 		if debugging != True and  has_read_sequence == False:
@@ -280,46 +275,28 @@ while True:
 			sentence = sentence[counter4:]
 			months = {1 : "January", 2 : "Feburary", 3 : "March", 4 : "April", 5 : "May", 6 : "June", 7 : "July", 8 : "August", 9 : "September", 10 : "October", 11 : "November", 12 : "December"}
 			endings = {1 : "st", 2 : "nd", 3 : "rd", 4 : "th", 5 : "th", 6 : "th", 7 : "th", 8 : "th", 9 : "th", 0 : "th"}
-			if animation == True:
-				word_by_word("This message was encrypted on " + day + endings[int(day[:0:-1])] + " of " + months[int(month)] + " of " + year + " at " + hour + ":" + minute)
+			if len(day) == 2:
+				cout("This message was encrypted on " + day + endings[int(day[:0:-1])] + " of " + months[int(month)] + " of " + year + " at " + hour + ":" + minute)
 			else:
-				if len(day) == 2:
-					print("This message was encrypted on " + day + endings[int(day[:0:-1])] + " of " + months[int(month)] + " of " + year + " at " + hour + ":" + minute)
-				else:
-					print("This message was encrypted on " + day + endings[int(day)] + " of " + months[int(month)] + " of " + year + " at " + hour + ":" + minute)
+				cout("This message was encrypted on " + day + endings[int(day)] + " of " + months[int(month)] + " of " + year + " at " + hour + ":" + minute)
 		sentence = "".join(sentence)
-		if animation == True:
-			word_by_word("The sentence is " +  sentence)
-		else:
-			print("The sentence is " +  sentence)
+		cout("The sentence is " +  sentence)
 	elif operation == "exit":
 		break
 	elif operation == "debugging mode":
 		if debugging == False:
-			if animation == True:
-				word_by_word("Debugging mode enabled")
-			else:
-				print("Debugging mode enabled")
+			cout("Debugging mode enabled")
 			debugging = True
 		else:
-			if animation == True:
-				word_by_word("Debugging mode disabled")
-			else:
-				print("Debugging mode disabled")
+			cout("Debugging mode disabled")
 			debugging = True
 	elif operation == "write":
 		if write == False:	
 			write = True
-			if animation == True:
-				word_by_word("Writing enabled")
-			else:
-				print("Writing enabled")
+			cout("Writing enabled")
 		else:
 			write = False
-			if animation == True:
-				word_by_word("Writing disabled")
-			else:
-				print("Writing disabled")
+			cout("Writing disabled")
 	elif operation == "read":
 		if animation == True:
 			word_by_word("To read a file, make sure it is inside the folder in which this file is located. Then, just enter the line in which the sequence is.")
@@ -335,7 +312,4 @@ while True:
 		sequence = read_sequence
 		has_read_sequence = True
 	else:
-		if animation == True:
-			word_by_word("That's not a valid operation")
-		else:
-			print("That's not a valid operation")
+		cout("That's not a valid operation")
